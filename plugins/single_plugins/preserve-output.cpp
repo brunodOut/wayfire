@@ -35,11 +35,22 @@ class last_output_info_t : public wf::custom_data_t
 std::string make_output_identifier(wf::output_t *output)
 {
     std::string identifier = "";
-    identifier += output->handle->make;
+    std::string make = "Unknown";
+    std::string model = "Unknown";
+    std::string serial = "Unknown";
+
+    if (output->handle->make)
+        make = output->handle->make;
+    if (output->handle->model)
+        model = output->handle->model;
+    if (output->handle->serial)
+        serial = output->handle->serial;
+    
+    identifier += make;
     identifier += "|";
-    identifier += output->handle->model;
+    identifier += model;
     identifier += "|";
-    identifier += output->handle->serial;
+    identifier += serial;
     return identifier;
 }
 
